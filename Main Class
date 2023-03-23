@@ -1,0 +1,23 @@
+package database;
+import java.util.Scanner;
+/*
+student database class
+ */
+public class Main {
+    public static void main(String[] args) {
+
+// users added?
+        System.out.println("Enter number of new students enrolling:");
+        Scanner input = new Scanner(System.in);
+        int numOfStudents = input.nextInt();
+        Students [] students = new Students[numOfStudents];
+// create n number of students from array
+        for(int n= 0; n< numOfStudents; n++){
+            students[n] = new Students();
+            students[n].enrollemnt();
+            students[n].payTuition();
+            System.out.println(students[n].toString());
+
+        }
+    }
+}
