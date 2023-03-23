@@ -1,0 +1,89 @@
+package database;
+import javax.print.DocFlavor;
+import java.util.Scanner;
+public class Students {
+    private String firstName;
+    private String lastName;
+    private int gradeYear;
+    private int studentID;
+    private String courses;
+
+    private int tuitionBal;
+
+    private static int CostofCourse = 600;
+    private static int id = 1000;
+    /*
+    making course cost and id length static makes them true for all instances of the object
+    we can increment the 4 digit id number by 1 for each new student created
+     */
+    //constructors: prompt students to enter name and year
+
+    public Students() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter Student first name");
+        this.firstName = input.nextLine();
+
+        System.out.println("Enter Student last name ");
+        this.lastName = input.nextLine();
+
+        System.out.println("1-Freshamn\n2-sophomore\n3-junior\n4-senior\nEnter student class level");
+        this.gradeYear = input.nextInt(); //we want a number entry
+
+        setStudentID();
+
+        System.out.println(firstName + " " + lastName + " " + gradeYear + " " + studentID);
+
+    }
+
+    //generate ID (id++;)
+    private void setStudentID() {
+        //Grade Level + ID
+        id++;
+        this.studentID = gradeYear + id++;
+    }
+
+    //enroll in courses
+    public void enrollemnt() {
+        //loop, user hits 0 to exit
+
+        do {
+            System.out.println("Enter a course to enroll (Q to quit): ");
+            Scanner input = new Scanner(System.in);
+            String course = input.nextLine();
+            if (!course.equals("Q")) {
+                courses = courses + "\n" + course;
+                tuitionBal = tuitionBal + CostofCourse;
+            } else {
+
+                break;
+
+            }
+        } while (1 != 0);
+        System.out.println("ENROLLED IN: " + courses);
+        System.out.println("TUITION BALANCE: " + tuitionBal);
+
+    }
+        //view balance
+        public void viewBal () {
+            System.out.println(" Your balance is:" + tuitionBal);
+        }
+        //pay tuition
+        public void payTuition ( ){
+        viewBal();
+        System.out.println("Enter your payment amount: $");
+        Scanner input = new Scanner(System.in);
+        int payment = input.nextInt();
+            tuitionBal = tuitionBal - payment;
+            System.out.println("Thank you for your payment of: $" + payment);
+            viewBal();
+
+        }
+        // show status
+        public String showInfo(){
+        return "Name: " + firstName + " " + gradeYear+ " " + lastName +
+                "\n Student ID: " + studentID+
+                "\nCourses Enrolled: " + courses +
+                "\nBalance: $" +tuitionBal;
+        }
+
+}
